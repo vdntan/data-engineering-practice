@@ -1,12 +1,19 @@
 version: "3.9"
+
 services:
-    test:
-      image: "exercise-7"
-      volumes:
-        - .:/app
-      command: python3 -m pytest
-    run:
-      image: "exercise-7"
-      volumes:
-        - .:/app
-      command: /spark/bin/spark-submit main.py
+  test:
+    image: exercise-7
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: python3 -m pytest
+
+  run:
+    image: exercise-7
+    volumes:
+      - .:/app
+    working_dir: /app
+    environment:
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=python3
+    command: spark-submit main.py
