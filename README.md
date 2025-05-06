@@ -1,5 +1,10 @@
 ## Data Engineering Practice Problems
 
+#Thành viên:
+-Võ Đại Nhật Tân - 23714171
+-Mai Văn Quân - 23703521
+-Đỗ Nhất Thắng - 23708371
+
 One of the main obstacles of Data Engineering is the large
 and varied technical skills that can be required on a 
 day-to-day basis.
