@@ -10,5 +10,5 @@
 
 ## Exercise-1:
 
-
+![alt text](images/E1dockerbuild.jpg)
 
