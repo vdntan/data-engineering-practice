@@ -1,1 +1,83 @@
 
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+    volumes:
+      - postgres-db-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      retries: 5
+    networks:
+      - airflow_net
+
+  airflow-init:
+    image: apache/airflow:2.7.3
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres/postgres
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__WEBSERVER__SECRET_KEY: my-super-secret-key
+    entrypoint: >
+      bash -c "
+      airflow db init &&
+      airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com"
+    networks:
+      - airflow_net
+
+  webserver:
+    image: apache/airflow:2.7.3
+    depends_on:
+      postgres:
+        condition: service_healthy
+      airflow-init:
+        condition: service_completed_successfully
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres/postgres
+      AIRFLOW__CORE__FERNET_KEY: ''          # nếu cần encryption
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__WEBSERVER__SECRET_KEY: my-super-secret-key
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./build_images.sh:/opt/airflow/build_images.sh
+    ports:
+      - "8080:8080"
+    command: webserver
+    networks:
+      - airflow_net
+
+  scheduler:
+    image: apache/airflow:2.7.3
+    depends_on:
+      webserver:
+        condition: service_started
+    environment:
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__CORE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:postgres@postgres/postgres
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__WEBSERVER__SECRET_KEY: my-super-secret-key
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./build_images.sh:/opt/airflow/build_images.sh
+    command: scheduler
+    networks:
+      - airflow_net
+
+volumes:
+  postgres-db-volume:
+  
+networks:
+  airflow_net:
+    driver: bridge
