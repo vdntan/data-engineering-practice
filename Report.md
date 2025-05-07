@@ -66,6 +66,6 @@
 
 ## Case-study2:
 
-![alt text](../Lab08_Airflow/Airflow/cs2(1).jpg)
+![alt text](images/cs2(1).jpg)
 
-![alt text](../Lab08_Airflow/Airflow/cs2(2).jpg)
+![alt text](images/cs2(2).jpg)
