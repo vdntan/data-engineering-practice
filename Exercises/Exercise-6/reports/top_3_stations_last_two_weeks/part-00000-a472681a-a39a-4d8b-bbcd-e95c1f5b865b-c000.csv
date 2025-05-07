@@ -1,0 +1,43 @@
+start_date,rank,from_station_id,from_station_name,trip_count
+2019-12-18,1,192,Canal St & Adams St,123
+2019-12-18,2,77,Clinton St & Madison St,115
+2019-12-18,3,91,Clinton St & Washington Blvd,94
+2019-12-19,1,192,Canal St & Adams St,133
+2019-12-19,2,77,Clinton St & Madison St,123
+2019-12-19,3,91,Clinton St & Washington Blvd,95
+2019-12-20,1,192,Canal St & Adams St,131
+2019-12-20,2,91,Clinton St & Washington Blvd,109
+2019-12-20,3,77,Clinton St & Madison St,94
+2019-12-21,1,35,Streeter Dr & Grand Ave,63
+2019-12-21,2,133,Kingsbury St & Kinzie St,47
+2019-12-21,3,289,Wells St & Concord Ln,46
+2019-12-22,1,3,Shedd Aquarium,87
+2019-12-22,2,76,Lake Shore Dr & Monroe St,79
+2019-12-22,3,35,Streeter Dr & Grand Ave,70
+2019-12-23,1,192,Canal St & Adams St,109
+2019-12-23,2,77,Clinton St & Madison St,87
+2019-12-23,3,91,Clinton St & Washington Blvd,78
+2019-12-24,1,91,Clinton St & Washington Blvd,38
+2019-12-24,1,35,Streeter Dr & Grand Ave,38
+2019-12-24,3,81,Daley Center Plaza,34
+2019-12-25,1,35,Streeter Dr & Grand Ave,136
+2019-12-25,2,90,Millennium Park,76
+2019-12-25,3,76,Lake Shore Dr & Monroe St,64
+2019-12-26,1,35,Streeter Dr & Grand Ave,165
+2019-12-26,2,76,Lake Shore Dr & Monroe St,104
+2019-12-26,3,195,Columbus Dr & Randolph St,88
+2019-12-27,1,35,Streeter Dr & Grand Ave,67
+2019-12-27,2,91,Clinton St & Washington Blvd,61
+2019-12-27,2,192,Canal St & Adams St,61
+2019-12-28,1,76,Lake Shore Dr & Monroe St,55
+2019-12-28,2,133,Kingsbury St & Kinzie St,39
+2019-12-28,3,35,Streeter Dr & Grand Ave,29
+2019-12-29,1,76,Lake Shore Dr & Monroe St,129
+2019-12-29,2,35,Streeter Dr & Grand Ave,100
+2019-12-29,3,3,Shedd Aquarium,69
+2019-12-30,1,192,Canal St & Adams St,74
+2019-12-30,2,91,Clinton St & Washington Blvd,55
+2019-12-30,3,77,Clinton St & Madison St,50
+2019-12-31,1,91,Clinton St & Washington Blvd,36
+2019-12-31,2,133,Kingsbury St & Kinzie St,30
+2019-12-31,3,195,Columbus Dr & Randolph St,28
