@@ -28,4 +28,29 @@
 ![image](https://github.com/user-attachments/assets/e63b4d3f-0bdb-4a8c-b4f5-f4f5193b7b35)
 
 ## Exercise-7:
+<<<<<<< HEAD
 ![image](https://github.com/user-attachments/assets/f957d924-d736-4d9d-ab90-7904bc00e6ff)
+=======
+
+![alt text](images/z6574813473711_30a0d145f0ba98cc7e7ff43ac7aa8ad6.jpg)
+
+![alt text](images/z6574813473719_f6692bcdf8f43042a7d994f5715a6391.jpg)
+
+![alt text](images/z6574813526602_822fa7defd0fc1f27253cc6eda1a8399.jpg)
+
+![alt text](images/z6574813526658_4713d94e11ad4e149f7e4baa43d3cbf8.jpg)
+
+![alt text](images/z6574813557937_682978aa1319f8f3c4acfc5e0941d6d9.jpg)
+
+![alt text](images/z6574813557970_30e25ec9c1f2e80d541b4445789090b7.jpg)
+
+![alt text](images/z6574813612818_7ce74e4dd2810fef267c1759d4ee88aa.jpg)
+
+# BÁO CÁO LAB 8
+
+## Case-study2:
+
+![alt text](images/cs2(1).jpg)
+
+![alt text](images/cs2(2).jpg)
+>>>>>>> e99f9535acc41f82a562e69301c225477baa4aa8
