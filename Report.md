@@ -10,11 +10,7 @@
 
 
 ## Exercise-5:
-
-![alt text](images/E5dockerbuild.jpg)
-
-![alt text](images/E5dockerup.jpg)
-
+![image](https://github.com/user-attachments/assets/df2deb1a-4424-4034-bffb-d68d9f2b5127)
 ## Exercise-6:
 ![image](https://github.com/user-attachments/assets/de2ffc4f-80c6-4fed-916d-46191ffa51cf)
 ### 1. Thời gian chuyến đi mỗi ngày trung bình là bao lâu ?
