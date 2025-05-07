@@ -8,29 +8,6 @@
 
 # BÁO CÁO LAB 9
 
-## Exercise-1:
-
-![alt text](images/E1dockerbuild.jpg)
-
-![alt text](images/E1dockerup.jpg)
-
-## Exercise-2:
-
-![alt text](images/E2dockerbuild.jpg)
-
-![alt text](images/E2dockerup.jpg)
-
-## Exercise-3:
-
-![alt text](images/E3dockerbuild.jpg)
-
-![alt text](images/E3dockerup.jpg)
-
-## Exercise-4:
-
-![alt text](images/E4dockerbuild.jpg)
-
-![alt text](images/E4dockerup.jpg)
 
 ## Exercise-5:
 
