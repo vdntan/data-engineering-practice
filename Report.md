@@ -61,3 +61,11 @@
 ![alt text](images/z6574813557970_30e25ec9c1f2e80d541b4445789090b7.jpg)
 
 ![alt text](images/z6574813612818_7ce74e4dd2810fef267c1759d4ee88aa.jpg)
+
+# BÁO CÁO LAB 8
+
+## Case-study2:
+
+![alt text](../Lab08_Airflow/Airflow/cs2(1).jpg)
+
+![alt text](../Lab08_Airflow/Airflow/cs2(2).jpg)
