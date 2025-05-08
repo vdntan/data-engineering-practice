@@ -1,36 +1,45 @@
-import requests, gzip, io
+import requests
+import gzip
+import io
 
-BASE = "https://data.commoncrawl.org/"
-INDEX_PATH = "crawl-data/CC-MAIN-2022-05/wet.paths.gz"
+BASE_URL = "https://data.commoncrawl.org/"
+WET_PATHS_GZ = "crawl-data/CC-MAIN-2022-05/wet.paths.gz"
 
-def fetch_first_wet_path():
-    url = BASE + INDEX_PATH
-    resp = requests.get(url, stream=True)
-    resp.raise_for_status()
-    # decompress in-memory
-    buf = io.BytesIO(resp.content)
-    with gzip.GzipFile(fileobj=buf) as f:
-        # read only the first line
-        return f.readline().decode("utf-8").strip()
+def download_gz_file(url):
+    print(f"Downloading gzipped file: {url}")
+    response = requests.get(url)
+    response.raise_for_status()
+    return response.content  # Trả về dữ liệu .gz dạng bytes
 
-def stream_wet_segment(first_path):
-    url = BASE + first_path
-    resp = requests.get(url, stream=True)
-    resp.raise_for_status()
-    # decompress the gz stream as we iterate
-    with gzip.GzipFile(fileobj=resp.raw) as gz:
-        count = 0
-        for raw in gz:
-            print(raw.decode("utf-8").rstrip())
-            count += 1
-            if count >= 10:
-                break
+def extract_first_path(gz_bytes):
+    print("Extracting first path from gzipped content...")
+    with gzip.GzipFile(fileobj=io.BytesIO(gz_bytes)) as gz:
+        first_line = gz.readline().decode('utf-8').strip()
+        print(f"Found first WET file path: {first_line}")
+        return first_line
 
+def stream_wet_file_lines(wet_url):
+    print(f"Streaming WET file from: {wet_url}")
+    response = requests.get(wet_url, stream=True)
+    response.raise_for_status()
+
+    for line in response.iter_lines():
+        try:
+            yield line.decode('utf-8')
+        except UnicodeDecodeError:
+            # Bỏ qua dòng không thể giải mã
+            continue
 def main():
-    print("Downloading index…")
-    first_path = fetch_first_wet_path()
-    print("First WET segment:", first_path, "\nStreaming now:\n")
-    stream_wet_segment(first_path)
+     gz_bytes = download_gz_file(BASE_URL + WET_PATHS_GZ)
+
+    # Bước 2: Giải nén và lấy dòng đầu tiên
+     first_path = extract_first_path(gz_bytes)
+
+    # Bước 3: Tạo URL hoàn chỉnh và stream dòng
+     full_url = BASE_URL + first_path
+     for line in stream_wet_file_lines(full_url):
+        print(line)
+
 
 if __name__ == "__main__":
     main()
