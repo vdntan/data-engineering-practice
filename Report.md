@@ -7,8 +7,14 @@
 -Đỗ Nhất Thắng - 23708371
 
 # BÁO CÁO LAB 9
-
-
+## Excerise-1:
+![image](https://github.com/user-attachments/assets/6477d89f-df99-4b0c-8c90-21c11bfab78c)
+## Exercise-2:
+![image](https://github.com/user-attachments/assets/8a1384d9-05ab-4107-8890-8abf783d35b4)
+## Exercise-3:
+![image](https://github.com/user-attachments/assets/f3501595-777f-45db-b21f-9e0f50b25855)
+## Exercise-4:
+![image](https://github.com/user-attachments/assets/7ac9a5a1-ec7d-4b34-bba3-839d00d45a99)
 ## Exercise-5:
 ![image](https://github.com/user-attachments/assets/df2deb1a-4424-4034-bffb-d68d9f2b5127)
 ## Exercise-6:
