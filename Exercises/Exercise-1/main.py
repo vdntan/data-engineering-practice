@@ -1,7 +1,7 @@
-import os
 import requests
-from zipfile import ZipFile
-
+import os
+import zipfile
+from pathlib import Path
 download_uris = [
     "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2018_Q4.zip",
     "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2019_Q1.zip",
@@ -9,42 +9,57 @@ download_uris = [
     "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2019_Q3.zip",
     "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2019_Q4.zip",
     "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2020_Q1.zip",
-    "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2220_Q1.zip",
+    "https://divvy-tripdata.s3.amazonaws.com/Divvy_Trips_2020_Q1.zip",
 ]
+DOWNLOAD_DIR = Path("downloads")
 
-DOWNLOAD_DIR = "downloads"
+def create_download_dir():
+    """Create the downloads directory if it doesn't exist."""
+    if not DOWNLOAD_DIR.exists():
+        print("Creating 'downloads' directory...")
+        DOWNLOAD_DIR.mkdir(parents=True)
+    else:
+        print("'downloads' directory already exists.")
 
+def get_filename_from_url(url):
+    """Extract filename from URL."""
+    return url.split("/")[-1]
 
-def download_and_extract(url):
-    filename = url.split("/")[-1]
-    zip_path = os.path.join(DOWNLOAD_DIR, filename)
-
+def download_file(url, dest_path):
+    """Download a single file from a URL."""
     try:
-        print(f"Downloading {filename}...")
-        response = requests.get(url)
+        response = requests.get(url, stream=True, timeout=10)
         response.raise_for_status()
-        with open(zip_path, "wb") as f:
-            f.write(response.content)
-        print(f"Downloaded: {filename}")
-
-        with ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(DOWNLOAD_DIR)
-        print(f"Extracted: {filename}")
-
-        os.remove(zip_path)
-        print(f"Deleted zip: {filename}\n")
-
+        with open(dest_path, 'wb') as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        print(f"Downloaded: {dest_path.name}")
+        return True
     except Exception as e:
-        print(f"❌ Failed to process {filename}: {e}\n")
+        print(f"Failed to download {url}: {e}")
+        return False
+
+def unzip_file(zip_path):
+    """Unzip a .zip file and delete the original .zip."""
+    try:
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            zip_ref.extractall(DOWNLOAD_DIR)
+        print(f"Extracted: {zip_path.name}")
+        zip_path.unlink()  # Delete the zip file
+    except zipfile.BadZipFile as e:
+        print(f"Bad zip file {zip_path.name}: {e}")
+
+
 
 def main():
     # your code here
-    if not os.path.exists(DOWNLOAD_DIR):
-        os.makedirs(DOWNLOAD_DIR)
-        print(f"Created directory: {DOWNLOAD_DIR}\n")
+     create_download_dir()
+     for url in download_uris:
+        filename = get_filename_from_url(url)
+        zip_path = DOWNLOAD_DIR / filename
 
-    for url in download_uris:
-        download_and_extract(url)
+        if download_file(url, zip_path):
+            unzip_file(zip_path)
 
 
 if __name__ == "__main__":
