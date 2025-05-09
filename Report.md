@@ -54,6 +54,10 @@
 
 # BÁO CÁO LAB 8
 
+## Case-study1:
+
+![alt text](images/cs1.jpg)
+
 ## Case-study2:
 
 ![alt text](images/cs2(1).jpg)
